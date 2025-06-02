@@ -27,3 +27,8 @@ export type Column = {
 export type Columns = {
     columns: Column[] | [];
 }
+
+export type ColumnsProps = {
+    columns: Columns;
+    onColumnsUpdate?: (columns: Column[]) => void;
+}

@@ -49,9 +49,9 @@ function App() {
         const tasks: Task[] = taskData.data
 
         setTasks(tasks)
-        
-        console.log('Fetched tasks:', tasks);
 
+        console.log('XXX fetched tasks XXX:', tasks);
+        
         setColumns(initialColumnsFromTasks(tasks))
         
       } catch (error) {
@@ -62,12 +62,27 @@ function App() {
     fetchTasks()
 
   }, [])
+        
+    if (tasks.length) {
+      console.log('Tasks:', tasks);
+    }
+
+    const handleColumnsUpdate = (updatedColumns: Column[]) => {
+
+      console.log('Updating columns from main:', columns);
+      const modifiedColumns: ColumnsType = {
+        // columns: [...columns.columns, ...updatedColumns]
+        columns: updatedColumns
+      };
+      setColumns(modifiedColumns);
+      console.log('Updated columns from main:', updatedColumns);
+    }
 
   return (
     <>
       <h1 className="p-4">Hello Drag and Drop</h1>
 
-      <Columns {...columns} />
+      <Columns {...columns} onColumnsUpdate={handleColumnsUpdate} />
     </>
   )
 }
